@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         postArrayList.clear()
         loadPosts()
 
-        //handle click, load more psots
+        //handle click, load more posts
         loadMoreBtn.setOnClickListener {
             val query = searchEt.text.toString().trim()
             if (TextUtils.isEmpty(query)){
@@ -76,17 +76,18 @@ class MainActivity : AppCompatActivity() {
         url = when (nextToken) {
             "" -> {
                 Log.d(TAG, "loadPosts: NextPageToken is empty, more psots")
-                ("https://www.googleapis.com/blogger/v3/blogs/${Constants.BLOG_ID}/posts?maxResult=${Constants.MAX_RESULTS}&&key=${Constants.API_KEY}")
+                ("https://www.googleapis.com/blogger/v3/blogs/${Constants.BLOG_ID}/posts?maxResults=${Constants.MAX_RESULTS}&key=${Constants.API_KEY}")
+
             }
             "end" -> {
-                Log.d(TAG, "loadPosts: Next page token is end, no more post  i.e loded all posts")
-                Toast.makeText(this, " No more posts", Toast.LENGTH_SHORT).show()
+                Log.d(TAG, "loadPosts: Next page token is end, no more post i.e loaded all posts")
+                Toast.makeText(this, "No more posts", Toast.LENGTH_SHORT).show()
                 progressDialog.dismiss()
                 return
             }
             else -> {
                 Log.d(TAG, "loadPosts: Next page Token: $nextToken")
-                ("https://www.googleapis.com/blogger/v3/blogs/${Constants.BLOG_ID}/posts?maxResult=${Constants.MAX_RESULTS}&pageToken=$nextToken=${Constants.API_KEY}")
+                ("https://www.googleapis.com/blogger/v3/blogs/${Constants.BLOG_ID}/posts?maxResults=${Constants.MAX_RESULTS}&pageToken=$nextToken&key=${Constants.API_KEY}")
             }
         }
         Log.d(TAG, "loadPosts: URL: $url")
@@ -172,11 +173,11 @@ class MainActivity : AppCompatActivity() {
 
         url = when (nextToken) {
             "" -> {
-                Log.d(TAG, "searchPosts: NextPageToken is empty, more psots")
-                ("https://www.googleapis.com/blogger/v3/blogs/${Constants.BLOG_ID}/posts/search?q=$query&&key=${Constants.API_KEY}")
+                Log.d(TAG, "searchPosts: NextPageToken is empty, more posts")
+                ("https://www.googleapis.com/blogger/v3/blogs/${Constants.BLOG_ID}/posts/search?q=$query&key=${Constants.API_KEY}")
             }
             "end" -> {
-                Log.d(TAG, "searchPosts: Next page token is end, no more post  i.e loded all posts")
+                Log.d(TAG, "searchPosts: Next page token is end, no more post  i.e loaded all posts")
                 Toast.makeText(this, " No more posts", Toast.LENGTH_SHORT).show()
                 progressDialog.dismiss()
                 return

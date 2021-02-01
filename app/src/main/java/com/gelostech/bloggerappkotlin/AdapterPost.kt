@@ -1,11 +1,13 @@
 package com.gelostech.bloggerappkotlin
 
 import android.content.Context
+import android.content.Intent
 import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.SimpleAdapter
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView
@@ -18,7 +20,6 @@ import java.text.SimpleDateFormat
 class AdapterPost(
     private val context: Context,
     private val postArrayList: ArrayList<ModelPost>
-
 ) : RecyclerView.Adapter<AdapterPost.HolderPost>() {
 
 
@@ -51,11 +52,11 @@ class AdapterPost(
             val elements = document.select("img")
             val image = elements[0].attr("src")
             //set image
-           // Picasso.get().load(image).placeholder(R.drawable.ic_image_black).into(image)
+          Picasso.get().load(image).placeholder(R.drawable.ic_image_black).into(holder.imageIv)
 
         } catch (e: Exception) {
-            //exeption while getting image, may be due to no image
-          //  holder.imageTv.setImageResource(R.drawable.ic_image_black)
+            //exception while getting image, may be due to no image
+            holder.imageIv.setImageResource(R.drawable.ic_image_black)
         }
 
         //format date
@@ -73,14 +74,20 @@ class AdapterPost(
         holder.titleTv.text = title
         holder.descriptorTv.text = document.text()
         holder.publishedInfoTv.text = "By $authorName $formattedDate"  // e.g By
+
+        /*handle  item  click show  post detail  pass postId using intent  to show its details*/
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, PostDetailsActivity::class.java)
+            intent.putExtra("postId", id)// key value : pass
+            context.startActivity(intent)
+        }
     }
 
     inner class HolderPost(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var moreBtn: ImageButton = itemView.findViewById(R.id.moreBtn)
         var titleTv: TextView = itemView.findViewById(R.id.titleTv)
         var publishedInfoTv: TextView = itemView.findViewById(R.id.publishInfoTV)
-        var imageTv: TextView = itemView.findViewById(R.id.imageIv)
+        var imageIv: ImageView = itemView.findViewById(R.id.imageIv)
         var descriptorTv: TextView = itemView.findViewById(R.id.descriptionTv)
     }
-
 }
