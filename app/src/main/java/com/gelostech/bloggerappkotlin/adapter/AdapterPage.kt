@@ -1,4 +1,4 @@
-package com.gelostech.bloggerappkotlin
+package com.gelostech.bloggerappkotlin.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -8,26 +8,26 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.gelostech.bloggerappkotlin.model.ModelPost
+import com.gelostech.bloggerappkotlin.PageDetailsActivity
+import com.gelostech.bloggerappkotlin.R
+import com.gelostech.bloggerappkotlin.model.ModelPage
 import com.squareup.picasso.Picasso
 import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
 
 class AdapterPage(
     var context: Context,
-    var pagerArrayList: ArrayList<ModelPost>
+    var pagerArrayList: ArrayList<ModelPage>
 ) : RecyclerView.Adapter<AdapterPage.HolderPage>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderPage {
-        val view = LayoutInflater.from(context).inflate(R.layout.row_post, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.row_page, parent, false)
         return HolderPage(view)
-
     }
-
     override fun getItemCount(): Int {
         return pagerArrayList.size
     }
-
     override fun onBindViewHolder(holder: HolderPage, position: Int) {
         //get data , set data  format data, handle click etc.
         val model = pagerArrayList[position]
@@ -40,7 +40,9 @@ class AdapterPage(
         val title = model.title
         val updated = model.updated
         val url = model.url
-        //convert html content  to simple text
+
+
+        //desctiption / content  is in  html content  to simple text
         val document = Jsoup.parse(content)
         try {
             //get image, there may be multiple
@@ -66,13 +68,14 @@ class AdapterPage(
         }
 
         holder.titleTv.text = title
-        holder.descriptionTv.text = document.text()
         holder.publishInfoTv.text = "By $authorName $formattedDate"
+        holder.descriptionTv.text = document.text()
+
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, PageDetailsActivity::class.java)
             intent.putExtra("pageId", id)
-          //  content.starActivity(intent)
+            context.startActivity(intent)
         }
 
     }

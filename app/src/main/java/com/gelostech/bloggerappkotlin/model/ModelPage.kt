@@ -1,6 +1,6 @@
-package com.gelostech.bloggerappkotlin
+package com.gelostech.bloggerappkotlin.model
 
-class ModelPost(
+class ModelPage(
     val authorName: String,
     val content: String,
     val id: String,

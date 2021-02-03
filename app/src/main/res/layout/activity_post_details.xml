@@ -40,6 +40,49 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
+        <!--Post labels -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray1"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Labels"
+            android:layout_marginTop="5dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/labelsRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/row_label"
+            app:spanCount="4"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            />
+        <!--COMMENTS-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray1"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comments"
+            android:layout_marginTop="5dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/commentsRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/row_comments"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
 
 
     </LinearLayout>

@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
+    android:padding="5dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:id="@+id/moreBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_next_black"
+        android:tint="@color/black" />
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_toStartOf="@+id/moreBtn"
+        android:text="The post title"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/publishInfoTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/titleTv"
+        android:layout_toStartOf="@+id/moreBtn"
+        android:text="By Makhmudov 25/01/2020"
+        android:textColor="@color/gray1"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageIv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/publishInfoTV"
+        android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
+        android:layout_marginEnd="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_image_black"
+        android:background="@color/gray2"/>
+
+    <TextView
+        android:id="@+id/descriptionTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/publishInfoTV"
+        android:layout_toStartOf="@+id/moreBtn"
+        android:layout_toEndOf="@+id/imageIv"
+        android:text="The description of the page with maximum four lines"
+        android:textColor="@color/black"
+        android:maxLines="4"
+        android:ellipsize="end"
+        android:textStyle="italic" />
+
+</RelativeLayout>

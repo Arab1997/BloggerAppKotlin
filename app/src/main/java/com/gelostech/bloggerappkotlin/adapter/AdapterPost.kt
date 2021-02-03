@@ -1,17 +1,17 @@
-package com.gelostech.bloggerappkotlin
+package com.gelostech.bloggerappkotlin.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.SimpleAdapter
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
+import com.gelostech.bloggerappkotlin.model.ModelPost
+import com.gelostech.bloggerappkotlin.PostDetailsActivity
+import com.gelostech.bloggerappkotlin.R
 import com.squareup.picasso.Picasso
 import org.jsoup.Jsoup
 import java.lang.Exception
